@@ -34,4 +34,4 @@ jobs:
         aliyun configure set --region Hong Kong --access-key-id LTAI5tLGmAQtsnbv9CLX1DHV --access-key-secret w0syCcTuTogX4ZpG5Eo9q6yhSLKBzf
         
         # Deploy code to Alibaba ECS
-        aliyun ecs RunCommand --InstanceIds i-j6cen21ld8zvts6xu8rf --Type RunShellScript --CommandContent 'cd /path/to/code && git pull && ./deploy.sh'
+        aliyun ecs RunCommand --InstanceIds i-j6cen21ld8zvts6xu8rf --Type RunShellScript --CommandContent 'git pull && ./deploy.sh'
