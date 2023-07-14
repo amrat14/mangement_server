@@ -1,0 +1,37 @@
+name: Deploy to Alibaba ECS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+        
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Deploy to Alibaba ECS
+      env:
+        ACCESS_KEY_ID: LTAI5tLGmAQtsnbv9CLX1DHV
+        ACCESS_KEY_SECRET: w0syCcTuTogX4ZpG5Eo9q6yhSLKBzf
+      run: |
+        # Install Alibaba Cloud CLI
+        curl -sSL https://get.alicloudcli.com/aliyun-cli-linux-latest -o /tmp/aliyun-cli-linux-latest
+        sudo sh /tmp/aliyun-cli-linux-latest
+
+        # Configure Alibaba Cloud CLI
+        aliyun configure set --region Hong Kong --access-key-id LTAI5tLGmAQtsnbv9CLX1DHV --access-key-secret w0syCcTuTogX4ZpG5Eo9q6yhSLKBzf
+        
+        # Deploy code to Alibaba ECS
+        aliyun ecs RunCommand --InstanceIds i-j6cen21ld8zvts6xu8rf --Type RunShellScript --CommandContent 'cd /path/to/code && git pull && ./deploy.sh'
