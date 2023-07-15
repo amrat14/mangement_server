@@ -27,8 +27,7 @@ jobs:
         ACCESS_KEY_SECRET: w0syCcTuTogX4ZpG5Eo9q6yhSLKBzf
       run: |
         # Install Alibaba Cloud CLI
-        # Install Alibaba Cloud CLI
-        curl -sSL http://8.210.167.80/aliyun-cli-linux-latest -o /tmp/aliyun-cli-linux-latest
+        curl -sSL https://get.alicloudcli.com/aliyun-cli-linux-latest -o /tmp/aliyun-cli-linux-latest
         sudo sh /tmp/aliyun-cli-linux-latest
 
 
